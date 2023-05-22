@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="Es">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>Repaso vanilla Javascript </title>
+<style type="text/css">
+	body{
+	background-color: #000;
+	color: #fff;
+	font-family: Arial;
+	font-size: 16px;
+	}
+</style>
+<!--<script src="main.js" type="text/javascript"></script>-->
+</head>
+<body>
+
+<h1>Fetch API</h1>
+<p><strong>FETCH:</strong>es una API de JavaScript que se utiliza para realizar solicitudes HTTP (HTTP requests) desde una aplicación web. Con Fetch, se pueden realizar solicitudes GET, POST, PUT, DELETE y muchas otras, y se pueden enviar datos en formato JSON o FormData.</p>
+<p>En esta página realizamos Peticiones Asincronas</p>
+<p>Y también consumimos una API</p>
+<button id="btnFetchCharacters">
+	Fetch characters
+</button>
+<div id="personajes"></div>
+<script type="text/javascript">
+	//console.log('Fetch API')
+	const boton = document.getElementById('btnFetchCharacters')
+	const div = document.getElementById('personajes')
+	boton.addEventListener('click', ()=>{
+		fetch('https://rickandmortyapi.com/api/character')
+			.then((response) => response.json())
+			//.then((data) =>console.log(data));
+			.then((data) => renderPersonajes(data.results));
+	});
+
+function renderPersonajes(characteres){
+	characteres.forEach(ch=>{
+		div.innerHTML += `<img src="${ch.image}">`;
+});
+}
+</script>
+</body>
+</html>
